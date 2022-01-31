@@ -1,0 +1,34 @@
+{
+  "files": {
+    "app.js": "/scrambledeggs/static/js/app.9172f5c8.chunk.js",
+    "app.js.map": "/scrambledeggs/static/js/app.9172f5c8.chunk.js.map",
+    "runtime~app.js": "/scrambledeggs/static/js/runtime~app.3726a7e7.js",
+    "runtime~app.js.map": "/scrambledeggs/static/js/runtime~app.3726a7e7.js.map",
+    "static/js/2.5514a75f.chunk.js": "/scrambledeggs/static/js/2.5514a75f.chunk.js",
+    "static/js/2.5514a75f.chunk.js.map": "/scrambledeggs/static/js/2.5514a75f.chunk.js.map",
+    "fonts/AntDesign.ttf": "/scrambledeggs/./fonts/AntDesign.ttf",
+    "fonts/Entypo.ttf": "/scrambledeggs/./fonts/Entypo.ttf",
+    "fonts/Feather.ttf": "/scrambledeggs/./fonts/Feather.ttf",
+    "fonts/FontAwesome.ttf": "/scrambledeggs/./fonts/FontAwesome.ttf",
+    "fonts/FontAwesome5_Brands.ttf": "/scrambledeggs/./fonts/FontAwesome5_Brands.ttf",
+    "fonts/FontAwesome5_Solid.ttf": "/scrambledeggs/./fonts/FontAwesome5_Solid.ttf",
+    "fonts/Fontisto.ttf": "/scrambledeggs/./fonts/Fontisto.ttf",
+    "fonts/Foundation.ttf": "/scrambledeggs/./fonts/Foundation.ttf",
+    "fonts/Ionicons.ttf": "/scrambledeggs/./fonts/Ionicons.ttf",
+    "fonts/MaterialCommunityIcons.ttf": "/scrambledeggs/./fonts/MaterialCommunityIcons.ttf",
+    "fonts/MaterialIcons.ttf": "/scrambledeggs/./fonts/MaterialIcons.ttf",
+    "fonts/SimpleLineIcons.ttf": "/scrambledeggs/./fonts/SimpleLineIcons.ttf",
+    "favicon-16.png": "/scrambledeggs/favicon-16.png",
+    "favicon-32.png": "/scrambledeggs/favicon-32.png",
+    "favicon.ico": "/scrambledeggs/favicon.ico",
+    "index.html": "/scrambledeggs/index.html",
+    "manifest.json": "/scrambledeggs/manifest.json",
+    "serve.json": "/scrambledeggs/serve.json",
+    "static/js/2.5514a75f.chunk.js.LICENSE.txt": "/scrambledeggs/static/js/2.5514a75f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.3726a7e7.js",
+    "static/js/2.5514a75f.chunk.js",
+    "static/js/app.9172f5c8.chunk.js"
+  ]
+}
