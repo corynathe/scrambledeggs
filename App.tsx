@@ -32,6 +32,7 @@ export default function App() {
   const [hasShow, setHasShow] = useState<boolean>(false);
   const [correct, setCorrect] = useState<boolean>(false);
   const [showOptionsModal, setShowOptionsModal] = useState<boolean>(false);
+  const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
 
   const showNone = useCallback((force?: boolean) => {
     if (!correct || force) {
@@ -83,19 +84,28 @@ export default function App() {
     setShowOptionsModal(!showOptionsModal);
   }, [showOptionsModal]);
 
+  const toggleInfoModal = useCallback(() => {
+    setShowInfoModal(!showInfoModal);
+  }, [showInfoModal]);
+
   return (
       <View style={STYLES.container}>
         <View style={STYLES.north}>
           <Text style={STYLES.title}>{gameInfo.title}</Text>
-          <TouchableOpacity onPress={toggleOptionsModal}>
-            <View style={STYLES.row}>
-              <Text style={STYLES.optioonsDisplay}>
-                Type:&nbsp;&nbsp;<NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={'#000'} size={20} />
-                &nbsp;&nbsp;
-                Level:&nbsp;&nbsp;<LevelIcons icons={DIFFICULTY_LEVEL[settings.level].icons} color={'#000'} size={20} />
-              </Text>
-            </View>
-          </TouchableOpacity>
+          <View style={STYLES.row}>
+            <Text style={STYLES.optionsDisplay}>
+              <TouchableOpacity style={STYLES.infoIcon} onPress={toggleInfoModal}>
+                <NonClickIcon type="MaterialCommunityIcons" name="information-outline" color={'#fff'} size={30} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={toggleOptionsModal}>
+                <View style={STYLES.row}>
+                  <NonClickIcon style={STYLES.gameIcon} type={gameInfo.icon.type} name={gameInfo.icon.name} color={'#fff'} size={30} />
+                  <LevelIcons icons={DIFFICULTY_LEVEL[settings.level].icons} color={'#fff'} size={30} />
+                </View>
+              </TouchableOpacity>
+            </Text>
+          </View>
         </View>
         <View style={STYLES.center}>
           {correct && (
@@ -125,9 +135,10 @@ export default function App() {
         </View>
         <Modal
             animationType="slide"
-            transparent={false}
+            transparent
             visible={showOptionsModal}
-            onRequestClose={toggleOptionsModal}>
+            onRequestClose={toggleOptionsModal}
+        >
           <View style={STYLES.centeredView}>
             <View style={STYLES.modalView}>
               <Text style={STYLES.optionsTitle}>Game Settings:</Text>
@@ -161,6 +172,26 @@ export default function App() {
                 })}
               </View>
               <TouchableOpacity style={STYLES.button} onPress={toggleOptionsModal}>
+                <Text style={STYLES.buttonText}>DONE</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+            animationType="slide"
+            transparent
+            visible={showInfoModal}
+            onRequestClose={toggleInfoModal}
+        >
+          <View style={STYLES.centeredView}>
+            <View style={STYLES.modalView}>
+              <Text style={STYLES.optionsTitle}>How To Play:</Text>
+              <View style={STYLES.spaced}>
+                <Text>
+                  {gameInfo.info}
+                </Text>
+              </View>
+              <TouchableOpacity style={STYLES.button} onPress={toggleInfoModal}>
                 <Text style={STYLES.buttonText}>DONE</Text>
               </TouchableOpacity>
             </View>

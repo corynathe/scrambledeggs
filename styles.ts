@@ -1,37 +1,23 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
 
 export const STYLES = StyleSheet.create({
     container: {
         height: '100%',
-        // maxWidth: 1500,
         backgroundColor: '#fff',
     },
-    // over: {
-    //     // position: 'relative',
-    //     // top: 360,
-    // },
-    // under: {
-    //     // opacity: 0.7,
-    // },
-    // outline: {
-    //     // border: 'solid #777 1px',
-    //     borderRadius: 10,
-    //     padding: 10,
-    //     margin: 5,
-    //     // backgroundColor: '#fff',
-    // },
 
     north: {
         height: '20%',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#000',
         // borderBottomWidth: 1,
     },
     center: {
         height: '5%',
         alignItems: 'center',
         justifyContent: 'center',
+        // backgroundColor: '#000',
         // borderBottomWidth: 1,
     },
     south: {
@@ -41,11 +27,18 @@ export const STYLES = StyleSheet.create({
     },
 
     title: {
-        fontSize: 50,
+        fontSize: 48,
         fontFamily: 'Papyrus',
+        color: '#fff',
         paddingTop: 40,
     },
-    optioonsDisplay: {
+    infoIcon: {
+        paddingRight: 100,
+    },
+    gameIcon: {
+        paddingRight: 15,
+    },
+    optionsDisplay: {
         fontSize: 25,
         fontFamily: 'Papyrus',
     },
@@ -57,7 +50,6 @@ export const STYLES = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'Papyrus',
     },
-
     row: {
         flexDirection: 'row',
     },
@@ -98,7 +90,7 @@ export const STYLES = StyleSheet.create({
     centeredView: {
         flex: 1,
         justifyContent: 'flex-start',
-        // alignItems: 'center',
+        alignItems: 'center',
         marginTop: 25,
     },
     modalView: {
