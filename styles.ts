@@ -17,7 +17,6 @@ export const STYLES = StyleSheet.create({
         height: '5%',
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor: '#000',
         // borderBottomWidth: 1,
     },
     south: {
@@ -34,6 +33,11 @@ export const STYLES = StyleSheet.create({
     },
     infoIcon: {
         paddingRight: 100,
+    },
+    infoLine: {
+        fontSize: 25,
+        fontFamily: 'Papyrus',
+        color: '#333',
     },
     gameIcon: {
         paddingRight: 15,
@@ -62,14 +66,21 @@ export const STYLES = StyleSheet.create({
         padding: 10,
         alignItems: 'center'
     },
+    cellBorder: {
+        padding: 10,
+        margin: 10,
+        alignItems: 'center',
+        border: 'solid 1px #555',
+        borderRadius: 10,
+    },
 
     levelSelected: {
         fontSize: 25,
         fontFamily: 'Papyrus',
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
     },
     levelUnselected: {
-        color: '#aaa',
+        color: '#bbb',
         fontSize: 25,
         fontFamily: 'Papyrus',
     },

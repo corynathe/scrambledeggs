@@ -24,7 +24,10 @@ export const ICON_GROUP = {
             type: 'MaterialCommunityIcons',
             name: 'egg-easter',
         },
-        info: 'Find the egg with the color that matches the basket.',
+        info: [
+            'The farmers eggs have all been scrambled!',
+            'Tap on the baskets to find the egg which is still in the correct place.'
+        ],
     },
     penguin: {
         title: 'Penguin Town',
@@ -38,7 +41,10 @@ export const ICON_GROUP = {
             type: 'MaterialCommunityIcons',
             name: 'penguin',
         },
-        info: 'Find the penguin with the color that matches the igloo.',
+        info: [
+            'The penguins are on the move!',
+            'Tap on the igloo to find the penguin that is still at home.'
+        ],
     },
     book: {
         title: 'Dewey\'s Decimals',
@@ -52,7 +58,10 @@ export const ICON_GROUP = {
             type: 'FontAwesome',
             name: 'book',
         },
-        info: 'Find the book with the color that matches the shelf.',
+        info: [
+            'The librarian is on vacation!',
+            'Tap on the book shelf to find the book that is in the right place'
+        ],
     },
     baby: {
         title: 'Diaper Change',
@@ -66,7 +75,10 @@ export const ICON_GROUP = {
             type: 'FontAwesome5',
             name: 'baby',
         },
-        info: 'Find the baby with the color that matches the stroller.',
+        info: [
+            'The babies are going for a walk!',
+            'Tap on the stroller to find the baby that is in the right place.'
+        ],
     },
     cow: {
         title: 'Moo Moo Mixup',
@@ -80,7 +92,10 @@ export const ICON_GROUP = {
             type: 'MaterialCommunityIcons',
             name: 'cow',
         },
-        info: 'Find the cow with the color that matches the barn.',
+        info: [
+            'The cows have escaped!',
+            'Tap on the barn to see which cow hasn\'t left his stable.'
+        ],
     },
     ball: {
         title: 'Hoop-tastic',
@@ -94,7 +109,10 @@ export const ICON_GROUP = {
             type: 'MaterialCommunityIcons',
             name: 'basketball',
         },
-        info: 'Find the basketball with the color that matches the hoop.',
+        info: [
+            'The big game is down to the final seconds!',
+            'Tap on the hoop to see which ball is going to win the game.'
+        ],
     },
 };
 
