@@ -26,7 +26,7 @@ export const STYLES = StyleSheet.create({
     },
 
     title: {
-        fontSize: 48,
+        fontSize: 40,
         fontFamily: 'Papyrus',
         color: '#fff',
         paddingTop: 40,
@@ -35,7 +35,7 @@ export const STYLES = StyleSheet.create({
         paddingRight: 100,
     },
     infoLine: {
-        fontSize: 25,
+        fontSize: 20,
         fontFamily: 'Papyrus',
         color: '#333',
     },
@@ -47,11 +47,7 @@ export const STYLES = StyleSheet.create({
         fontFamily: 'Papyrus',
     },
     optionsTitle: {
-        fontSize: 40,
-        fontFamily: 'Papyrus',
-    },
-    optionsGameTitle: {
-        fontSize: 25,
+        fontSize: 35,
         fontFamily: 'Papyrus',
     },
     row: {

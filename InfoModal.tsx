@@ -12,7 +12,7 @@ interface Props {
 
 export const InfoModal: FC<Props> = (props) => {
     const { toggleInfoModal, gameInfo } = props;
-    const size = DIFFICULTY_LEVEL[0].size;
+    const size = DIFFICULTY_LEVEL[1].size;
 
     return (
         <Modal
@@ -29,20 +29,22 @@ export const InfoModal: FC<Props> = (props) => {
                             return <Text style={STYLES.infoLine}>{line}</Text>
                         })}
                     </View>
-                    <View style={STYLES.row}>
-                        <View style={STYLES.cell}>
-                            <View style={STYLES.cellBorder}>
-                                <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={COLORS[0]} size={size} />
-                                <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={COLORS[0]} size={size * gameInfo.iconContainer.sizeFactor} />
+                    <View style={STYLES.spaced}>
+                        <View style={STYLES.row}>
+                            <View style={STYLES.cell}>
+                                <View style={STYLES.cellBorder}>
+                                    <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={COLORS[0]} size={size} />
+                                    <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={COLORS[0]} size={size * gameInfo.iconContainer.sizeFactor} />
+                                </View>
+                                <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'check-circle'} color={'green'} size={40} />
                             </View>
-                            <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'check-circle'} color={'green'} size={50} />
-                        </View>
-                        <View style={STYLES.cell}>
-                            <View style={STYLES.cellBorder}>
-                                <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={COLORS[5]} size={size} />
-                                <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={COLORS[2]} size={size * gameInfo.iconContainer.sizeFactor} />
+                            <View style={STYLES.cell}>
+                                <View style={STYLES.cellBorder}>
+                                    <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={COLORS[5]} size={size} />
+                                    <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={COLORS[2]} size={size * gameInfo.iconContainer.sizeFactor} />
+                                </View>
+                                <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'times-circle'} color={'red'} size={40} />
                             </View>
-                            <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'times-circle'} color={'red'} size={50} />
                         </View>
                     </View>
                     <TouchableOpacity style={STYLES.button} onPress={toggleInfoModal}>
