@@ -1,21 +1,12 @@
-import React, { FC, useCallback, useState, useMemo, useEffect, memo } from 'react';
+import React, { useCallback, useState, useMemo, useEffect } from 'react';
 import { Text, TouchableOpacity, View, Modal } from 'react-native';
-import { FontAwesome5, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { DIFFICULTY_LEVEL, ICON_GROUP, COLORS, TIMEOUT } from './constants';
 import { STYLES } from './styles';
-
-interface GameColors {
-  icons: string[];
-  containers: string[];
-}
-
-interface GameSettings {
-  level: number;
-  game: string;
-  colors: GameColors;
-  totalCount: number;
-}
+import { GameSettings, GameColors } from "./models";
+import { ClickIcon, LevelIcons, NonClickIcon } from "./Icons";
+import { OptionsModal } from "./OptionsModal";
+import { InfoModal } from "./InfoModal";
 
 export default function App() {
   const [settings, setSettings] = useState<GameSettings>({
@@ -97,7 +88,6 @@ export default function App() {
               <TouchableOpacity style={STYLES.infoIcon} onPress={toggleInfoModal}>
                 <NonClickIcon type="MaterialCommunityIcons" name="information-outline" color={'#fff'} size={30} />
               </TouchableOpacity>
-
               <TouchableOpacity onPress={toggleOptionsModal}>
                 <View style={STYLES.row}>
                   <NonClickIcon style={STYLES.gameIcon} type={gameInfo.icon.type} name={gameInfo.icon.name} color={'#fff'} size={30} />
@@ -133,144 +123,22 @@ export default function App() {
             )
           })}
         </View>
-        <Modal
-            animationType="slide"
-            transparent
-            visible={showOptionsModal}
-            onRequestClose={toggleOptionsModal}
-        >
-          <View style={STYLES.centeredView}>
-            <View style={STYLES.modalView}>
-              <Text style={STYLES.optionsTitle}>Game Settings:</Text>
-              <View style={STYLES.spaced}>
-                {Object.keys(ICON_GROUP).map(gameName => {
-                  const gameInfo = ICON_GROUP[gameName];
-                  const style = gameName === settings.game ? STYLES.levelSelected : STYLES.levelUnselected;
-                  const iconColor = gameName === settings.game ? '#000' : '#aaa';
-                  return (
-                      <TouchableOpacity key={gameName} onPress={() => {resetGame({game: gameName})}}>
-                        <View style={STYLES.row}>
-                          <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={iconColor} size={30} />
-                          <Text style={style}>&nbsp;&nbsp;{gameInfo.title}</Text>
-                        </View>
-                      </TouchableOpacity>
-                  )
-                })}
-              </View>
-              <View style={STYLES.spaced}>
-                {DIFFICULTY_LEVEL.map((df, i) => {
-                  const selected = settings.level === i;
-                  const style = selected ? STYLES.levelSelected : STYLES.levelUnselected;
-                  return(
-                      <TouchableOpacity key={df.name} onPress={() => {resetGame({level: i})}}>
-                        <View style={STYLES.row}>
-                          <Text style={style}>{df.name}&nbsp;&nbsp;</Text>
-                          <LevelIcons icons={df.icons} color={selected ? '#000' : '#aaa'} size={30} />
-                        </View>
-                      </TouchableOpacity>
-                  );
-                })}
-              </View>
-              <TouchableOpacity style={STYLES.button} onPress={toggleOptionsModal}>
-                <Text style={STYLES.buttonText}>DONE</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-        <Modal
-            animationType="slide"
-            transparent
-            visible={showInfoModal}
-            onRequestClose={toggleInfoModal}
-        >
-          <View style={STYLES.centeredView}>
-            <View style={STYLES.modalView}>
-              <Text style={STYLES.optionsTitle}>How To Play:</Text>
-              <View style={STYLES.spaced}>
-                <Text>
-                  {gameInfo.info}
-                </Text>
-              </View>
-              <TouchableOpacity style={STYLES.button} onPress={toggleInfoModal}>
-                <Text style={STYLES.buttonText}>DONE</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
+        {showOptionsModal && (
+            <OptionsModal
+                settings={settings}
+                toggleOptionsModal={toggleOptionsModal}
+                resetGame={resetGame}
+            />
+        )}
+        {showInfoModal && (
+            <InfoModal
+                gameInfo={gameInfo}
+                toggleInfoModal={toggleInfoModal}
+            />
+        )}
       </View>
   );
 }
-
-interface IconProps {
-  index?: number;
-  name: string;
-  color: string;
-  size: number;
-  style?: any;
-  type?: string;
-  onClick?: (index: number) => void;
-}
-
-const ClickIcon: FC<IconProps> = (props) => {
-  const { onClick } = props;
-
-  const _onClick = useCallback(() => {
-    onClick?.(props.index);
-  }, [props]);
-
-  return (
-      <TouchableOpacity onPress={_onClick}>
-        {props.type === 'FontAwesome' && <FAIcon {...props} />}
-        {props.type === 'FontAwesome5' && <FA5Icon {...props} />}
-        {props.type === 'MaterialCommunityIcons' && <MCIcon {...props} />}
-      </TouchableOpacity>
-  )
-}
-
-const NonClickIcon: FC<IconProps> = (props) => {
-  return (
-      <>
-        {props.type === 'FontAwesome' && <FAIcon {...props} />}
-        {props.type === 'FontAwesome5' && <FA5Icon {...props} />}
-        {props.type === 'MaterialCommunityIcons' && <MCIcon {...props} />}
-      </>
-  )
-}
-
-const FAIcon: FC<IconProps> = (props) => {
-  return (
-      <FontAwesome {...props}  />
-  )
-}
-
-const FA5Icon: FC<IconProps> = (props) => {
-  return (
-      <FontAwesome5 {...props}  />
-  )
-}
-
-const MCIcon: FC<IconProps> = (props) => {
-  return (
-      <MaterialCommunityIcons {...props} />
-  )
-}
-
-interface LevelIconsProps {
-  icons: string[];
-  size: number;
-  color: string;
-}
-
-const LevelIcons: FC<LevelIconsProps> = memo(props => {
-  const { icons, size, color } = props;
-  return (
-      <>
-        {icons.map((icon, i) => {
-          return <FAIcon key={i} name={icon} color={color} size={size} />;
-        })}
-      </>
-  )
-});
 
 const getRandomInt = (max: number): number => {
   return Math.floor(Math.random() * max);
