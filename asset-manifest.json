@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/scrambledeggs/static/js/app.5fdac6d8.chunk.js",
-    "app.js.map": "/scrambledeggs/static/js/app.5fdac6d8.chunk.js.map",
+    "app.js": "/scrambledeggs/static/js/app.0107505d.chunk.js",
+    "app.js.map": "/scrambledeggs/static/js/app.0107505d.chunk.js.map",
     "runtime~app.js": "/scrambledeggs/static/js/runtime~app.3726a7e7.js",
     "runtime~app.js.map": "/scrambledeggs/static/js/runtime~app.3726a7e7.js.map",
-    "static/js/2.622a4209.chunk.js": "/scrambledeggs/static/js/2.622a4209.chunk.js",
-    "static/js/2.622a4209.chunk.js.map": "/scrambledeggs/static/js/2.622a4209.chunk.js.map",
+    "static/js/2.3df29f70.chunk.js": "/scrambledeggs/static/js/2.3df29f70.chunk.js",
+    "static/js/2.3df29f70.chunk.js.map": "/scrambledeggs/static/js/2.3df29f70.chunk.js.map",
     "fonts/AntDesign.ttf": "/scrambledeggs/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/scrambledeggs/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/scrambledeggs/./fonts/Feather.ttf",
@@ -24,11 +24,11 @@
     "index.html": "/scrambledeggs/index.html",
     "manifest.json": "/scrambledeggs/manifest.json",
     "serve.json": "/scrambledeggs/serve.json",
-    "static/js/2.622a4209.chunk.js.LICENSE.txt": "/scrambledeggs/static/js/2.622a4209.chunk.js.LICENSE.txt"
+    "static/js/2.3df29f70.chunk.js.LICENSE.txt": "/scrambledeggs/static/js/2.3df29f70.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime~app.3726a7e7.js",
-    "static/js/2.622a4209.chunk.js",
-    "static/js/app.5fdac6d8.chunk.js"
+    "static/js/2.3df29f70.chunk.js",
+    "static/js/app.0107505d.chunk.js"
   ]
 }
