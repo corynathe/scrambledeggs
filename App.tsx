@@ -7,6 +7,7 @@ import { GameSettings, GameColors } from "./models";
 import { ClickIcon, LevelIcons, NonClickIcon } from "./Icons";
 import { OptionsModal } from "./OptionsModal";
 import { InfoModal } from "./InfoModal";
+import { GameOverModal } from "./GameOverModal";
 
 export default function App() {
   const [settings, setSettings] = useState<GameSettings>({
@@ -22,8 +23,10 @@ export default function App() {
   const [show, setShow] = useState<boolean[]>(Array(settings.totalCount).fill(false));
   const [hasShow, setHasShow] = useState<boolean>(false);
   const [correct, setCorrect] = useState<boolean>(false);
+  const [guessCounter, setGuessCounter] = useState<number>(0);
   const [showOptionsModal, setShowOptionsModal] = useState<boolean>(false);
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
+  const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
 
   const showNone = useCallback((force?: boolean) => {
     if (!correct || force) {
@@ -50,9 +53,16 @@ export default function App() {
     newShow[index] = true;
     setShow(newShow);
     setHasShow(true);
+    setGuessCounter(guessCounter + 1);
 
-    setCorrect(settings.colors.icons[index] === settings.colors.containers[index]);
-  }, [show, hasShow, settings]);
+    const isCorrect = settings.colors.icons[index] === settings.colors.containers[index];
+    if (isCorrect) {
+      setCorrect(true);
+      setTimeout(() => {
+        setShowGameOverModal(true);
+      }, 500);
+    }
+  }, [show, hasShow, settings, guessCounter]);
 
   const newGame = useCallback(() => {
     resetGame(settings);
@@ -69,6 +79,7 @@ export default function App() {
     setSettings(_newSettings);
     setCorrect(false);
     showNone(true);
+    setGuessCounter(0);
   }, [settings]);
 
   const toggleOptionsModal = useCallback(() => {
@@ -78,6 +89,11 @@ export default function App() {
   const toggleInfoModal = useCallback(() => {
     setShowInfoModal(!showInfoModal);
   }, [showInfoModal]);
+
+  const toggleGameOverModal = useCallback(() => {
+    newGame();
+    setShowGameOverModal(!showGameOverModal);
+  }, [showGameOverModal, newGame]);
 
   return (
       <View style={STYLES.container}>
@@ -96,13 +112,6 @@ export default function App() {
               </TouchableOpacity>
             </Text>
           </View>
-        </View>
-        <View style={STYLES.center}>
-          {correct && (
-              <TouchableOpacity style={STYLES.button} onPress={newGame}>
-                <Text style={STYLES.buttonText}>{gameInfo.playAgain}</Text>
-              </TouchableOpacity>
-          )}
         </View>
         <View style={STYLES.south}>
           {rows.map(r => {
@@ -134,6 +143,12 @@ export default function App() {
             <InfoModal
                 gameInfo={gameInfo}
                 toggleInfoModal={toggleInfoModal}
+            />
+        )}
+        {showGameOverModal && (
+            <GameOverModal
+                guessCounter={guessCounter}
+                toggleGameOverModal={toggleGameOverModal}
             />
         )}
       </View>

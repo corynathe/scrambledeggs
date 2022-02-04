@@ -14,7 +14,6 @@ export const COLORS = [
 export const ICON_GROUP = {
     egg: {
         title: 'Scrambled Eggs',
-        playAgain: 'Play Again',
         iconContainer: {
             type: 'FontAwesome',
             name: 'shopping-basket',
@@ -25,13 +24,12 @@ export const ICON_GROUP = {
             name: 'egg-easter',
         },
         info: [
-            'The farmers eggs have all been scrambled!',
+            'The farmer\'s eggs have all been scrambled!',
             'Tap on the baskets to find the egg which is still in the correct place.'
         ],
     },
     penguin: {
         title: 'Penguin Town',
-        playAgain: 'Play Again',
         iconContainer: {
             type: 'FontAwesome5',
             name: 'igloo',
@@ -48,7 +46,6 @@ export const ICON_GROUP = {
     },
     book: {
         title: 'Dewey\'s Decimals',
-        playAgain: 'Play Again',
         iconContainer: {
             type: 'MaterialCommunityIcons',
             name: 'bookshelf',
@@ -60,12 +57,11 @@ export const ICON_GROUP = {
         },
         info: [
             'The librarian is on vacation!',
-            'Tap on the book shelf to find the book that is in the right place'
+            'Tap on the book shelf to find the book that is in the right place.'
         ],
     },
     baby: {
         title: 'Diaper Change',
-        playAgain: 'Play Again',
         iconContainer: {
             type: 'MaterialCommunityIcons',
             name: 'baby-carriage',
@@ -77,12 +73,11 @@ export const ICON_GROUP = {
         },
         info: [
             'The babies are going for a walk!',
-            'Tap on the stroller to find the baby that is in the right place.'
+            'Tap on the stroller to find the baby that is ready to go.'
         ],
     },
     cow: {
         title: 'Moo Moo Mixup',
-        playAgain: 'Play Again',
         iconContainer: {
             type: 'MaterialCommunityIcons',
             name: 'barn',
@@ -94,12 +89,11 @@ export const ICON_GROUP = {
         },
         info: [
             'The cows have escaped!',
-            'Tap on the barn to see which cow hasn\'t left his stable.'
+            'Tap on the barn to see which cow hasn\'t left yet.'
         ],
     },
     ball: {
         title: 'Hoop-tastic',
-        playAgain: 'Play Again',
         iconContainer: {
             type: 'MaterialCommunityIcons',
             name: 'basketball-hoop-outline',
@@ -111,7 +105,7 @@ export const ICON_GROUP = {
         },
         info: [
             'The big game is down to the final seconds!',
-            'Tap on the hoop to see which ball is going to win the game.'
+            'Tap on the hoop to see which ball is going to score the winning basket.'
         ],
     },
 };

@@ -25,8 +25,8 @@ export const InfoModal: FC<Props> = (props) => {
                 <View style={STYLES.modalView}>
                     <Text style={STYLES.optionsTitle}>How To Play</Text>
                     <View style={STYLES.spaced}>
-                        {gameInfo.info.map(line => {
-                            return <Text style={STYLES.infoLine}>{line}</Text>
+                        {gameInfo.info.map((line, i) => {
+                            return <Text style={STYLES.infoLine} key={i}>{line}</Text>
                         })}
                     </View>
                     <View style={STYLES.spaced}>

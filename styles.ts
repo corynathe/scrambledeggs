@@ -13,14 +13,8 @@ export const STYLES = StyleSheet.create({
         backgroundColor: '#000',
         // borderBottomWidth: 1,
     },
-    center: {
-        height: '5%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        // borderBottomWidth: 1,
-    },
     south: {
-        height: '75%',
+        height: '80%',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -38,6 +32,15 @@ export const STYLES = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'Papyrus',
         color: '#333',
+    },
+    infoGuess: {
+        fontSize: 30,
+        fontFamily: 'Papyrus',
+        fontWeight: 'bold',
+        // padding: 20,
+        // backgroundColor: '#000',
+        // color: '#fff',
+        // borderRadius: 20,
     },
     gameIcon: {
         paddingRight: 15,
