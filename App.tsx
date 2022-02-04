@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useMemo, useEffect } from 'react';
-import { Text, TouchableOpacity, View, Modal } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import { DIFFICULTY_LEVEL, ICON_GROUP, COLORS, TIMEOUT } from './constants';
 import { STYLES } from './styles';
@@ -27,6 +27,7 @@ export default function App() {
   const [showOptionsModal, setShowOptionsModal] = useState<boolean>(false);
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
+  const showingModal = useMemo(() => showOptionsModal || showInfoModal || showGameOverModal, [showOptionsModal, showInfoModal, showGameOverModal]);
 
   const showNone = useCallback((force?: boolean) => {
     if (!correct || force) {
@@ -97,7 +98,7 @@ export default function App() {
 
   return (
       <View style={STYLES.container}>
-        <View style={STYLES.north}>
+        <View style={[STYLES.north, showingModal ? STYLES.withOpacity : undefined]}>
           <Text style={STYLES.title}>{gameInfo.title}</Text>
           <View style={STYLES.row}>
             <Text style={STYLES.optionsDisplay}>
@@ -113,7 +114,7 @@ export default function App() {
             </Text>
           </View>
         </View>
-        <View style={STYLES.south}>
+        <View style={[STYLES.south, showingModal ? STYLES.withOpacity : undefined]}>
           {rows.map(r => {
             return (
                 <View key={r} style={STYLES.row}>
@@ -147,6 +148,8 @@ export default function App() {
         )}
         {showGameOverModal && (
             <GameOverModal
+                color={settings.colors.containers[show.findIndex(s => s)]}
+                gameInfo={gameInfo}
                 guessCounter={guessCounter}
                 toggleGameOverModal={toggleGameOverModal}
             />

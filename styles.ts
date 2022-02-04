@@ -5,7 +5,9 @@ export const STYLES = StyleSheet.create({
         height: '100%',
         backgroundColor: '#fff',
     },
-
+    withOpacity: {
+        opacity: 0.1,
+    },
     north: {
         height: '20%',
         alignItems: 'center',
@@ -37,10 +39,6 @@ export const STYLES = StyleSheet.create({
         fontSize: 30,
         fontFamily: 'Papyrus',
         fontWeight: 'bold',
-        // padding: 20,
-        // backgroundColor: '#000',
-        // color: '#fff',
-        // borderRadius: 20,
     },
     gameIcon: {
         paddingRight: 15,
