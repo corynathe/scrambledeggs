@@ -32,18 +32,18 @@ export const InfoModal: FC<Props> = (props) => {
                     <View style={STYLES.spaced}>
                         <View style={STYLES.row}>
                             <View style={STYLES.cell}>
-                                <View style={STYLES.cellBorder}>
-                                    <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={COLORS[0]} size={size} />
-                                    <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={COLORS[0]} size={size * gameInfo.iconContainer.sizeFactor} />
+                                <View style={STYLES.cell}>
+                                    <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={'lightblue'} size={size} />
+                                    <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={'lightblue'} size={size * gameInfo.iconContainer.sizeFactor} />
                                 </View>
-                                <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'check-circle'} color={'green'} size={40} />
+                                <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'check-circle'} color={'green'} size={30} />
                             </View>
                             <View style={STYLES.cell}>
-                                <View style={STYLES.cellBorder}>
-                                    <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={COLORS[5]} size={size} />
-                                    <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={COLORS[2]} size={size * gameInfo.iconContainer.sizeFactor} />
+                                <View style={STYLES.cell}>
+                                    <NonClickIcon type={gameInfo.icon.type} name={gameInfo.icon.name} color={'teal'} size={size} />
+                                    <NonClickIcon index={0} type={gameInfo.iconContainer.type} name={gameInfo.iconContainer.name} color={'purple'} size={size * gameInfo.iconContainer.sizeFactor} />
                                 </View>
-                                <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'times-circle'} color={'red'} size={40} />
+                                <NonClickIcon style={STYLES.infoCorrect} index={0} type={'FontAwesome'} name={'times-circle'} color={'red'} size={30} />
                             </View>
                         </View>
                     </View>

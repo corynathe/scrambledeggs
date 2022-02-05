@@ -25,7 +25,7 @@ export const ICON_GROUP = {
         },
         info: [
             'The farmer\'s eggs have all been scrambled!',
-            'Tap on the baskets to find the egg which is still in the correct place.'
+            'Tap on the baskets to find the egg that is still in the correct place.'
         ],
     },
     penguin: {

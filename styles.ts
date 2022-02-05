@@ -6,13 +6,13 @@ export const STYLES = StyleSheet.create({
         backgroundColor: '#fff',
     },
     withOpacity: {
-        opacity: 0.1,
+        opacity: 0.25,
     },
     north: {
         height: '20%',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#000',
+        backgroundColor: '#444',
         // borderBottomWidth: 1,
     },
     south: {
