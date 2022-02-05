@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useMemo, useEffect } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { DIFFICULTY_LEVEL, ICON_GROUP, COLORS, TIMEOUT } from './constants';
+import { DIFFICULTY_LEVEL, ICON_GROUP, COLORS, TIMEOUT, GAME_KEY, DIFFICULTY_KEY } from './constants';
 import { STYLES } from './styles';
 import { GameSettings, GameColors } from "./models";
 import { ClickIcon, LevelIcons, NonClickIcon } from "./Icons";
@@ -9,25 +10,71 @@ import { OptionsModal } from "./OptionsModal";
 import { InfoModal } from "./InfoModal";
 import { GameOverModal } from "./GameOverModal";
 
+const getRandomInt = (max: number): number => {
+  return Math.floor(Math.random() * max);
+}
+
+const getRandomColors = (colors: string[], n: number): GameColors => {
+  const icons = [...colors].sort(() => 0.5 - Math.random()).slice(0, n);
+  let containers = [...icons].sort(() => 0.5 - Math.random());
+  let matches = colorMatches(icons, containers);
+  while (matches !== 1) {
+    containers = [...icons].sort(() => 0.5 - Math.random());
+    matches = colorMatches(icons, containers);
+  }
+  return { icons, containers };
+}
+
+const colorMatches = (first: string[], second: string[]): number => {
+  return first.filter((x, i) => x === second[i]).length;
+}
+
+const DEFAULT_SETTINGS = {
+  game: 'egg',
+  level: 1,
+  colors: getRandomColors(COLORS, 12),
+  totalCount: 12,
+};
+
 export default function App() {
-  const [settings, setSettings] = useState<GameSettings>({
-    game: 'egg',
-    level: 1,
-    colors: getRandomColors(COLORS, 12),
-    totalCount: 12,
-  });
-  const diffLevel = useMemo(() => DIFFICULTY_LEVEL[settings.level], [settings]);
-  const gameInfo = useMemo(() => ICON_GROUP[settings.game], [settings]);
-  const rows = useMemo(() => [...Array(diffLevel.rowCount).keys()], [diffLevel]);
-  const cols = useMemo(() => [...Array(diffLevel.colCount).keys()], [diffLevel]);
-  const [show, setShow] = useState<boolean[]>(Array(settings.totalCount).fill(false));
+  const [settings, setSettings] = useState<GameSettings>(DEFAULT_SETTINGS);
   const [hasShow, setHasShow] = useState<boolean>(false);
   const [correct, setCorrect] = useState<boolean>(false);
   const [guessCounter, setGuessCounter] = useState<number>(0);
   const [showOptionsModal, setShowOptionsModal] = useState<boolean>(false);
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean[]>(Array(DEFAULT_SETTINGS.totalCount).fill(false));
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const diffLevel = useMemo(() => DIFFICULTY_LEVEL[settings.level], [settings]);
+  const gameInfo = useMemo(() => ICON_GROUP[settings.game], [settings]);
+  const rows = useMemo(() => [...Array(diffLevel.rowCount).keys()], [diffLevel]);
+  const cols = useMemo(() => [...Array(diffLevel.colCount).keys()], [diffLevel]);
   const showingModal = useMemo(() => showOptionsModal || showInfoModal || showGameOverModal, [showOptionsModal, showInfoModal, showGameOverModal]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const newSettings = {};
+        const initGame = await AsyncStorage.getItem(GAME_KEY);
+        if (initGame) {
+          newSettings.game = initGame;
+        }
+        const initLevel = await AsyncStorage.getItem(DIFFICULTY_KEY);
+        if (initLevel) {
+          newSettings.level = parseInt(initLevel);
+        }
+
+        if (Object.keys(newSettings).length) {
+          resetGame(newSettings);
+        }
+        setLoading(false);
+      } catch(e) {
+        setLoading(false);
+      }
+    })();
+  }, []);
 
   const showNone = useCallback((force?: boolean) => {
     if (!correct || force) {
@@ -69,7 +116,7 @@ export default function App() {
     resetGame(settings);
   }, [settings]);
 
-  const resetGame = useCallback((newSettings: Partial<GameSettings>) => {
+  const resetGame = useCallback(async (newSettings: Partial<GameSettings>) => {
     const newLevel = newSettings.level ?? settings.level;
     const newTotalCount = DIFFICULTY_LEVEL[newLevel].rowCount * DIFFICULTY_LEVEL[newLevel].colCount;
     const _newSettings = {
@@ -77,6 +124,22 @@ export default function App() {
       ...newSettings,
       colors: getRandomColors(COLORS, newTotalCount),
     };
+
+    if (_newSettings.game !== settings.game) {
+      try {
+        await AsyncStorage.setItem(GAME_KEY, _newSettings.game);
+      } catch (e) {
+        // saving error
+      }
+    }
+    if (_newSettings.level !== settings.level) {
+      try {
+        await AsyncStorage.setItem(DIFFICULTY_KEY, _newSettings.level+'');
+      } catch (e) {
+        // saving error
+      }
+    }
+
     setSettings(_newSettings);
     setCorrect(false);
     showNone(true);
@@ -96,6 +159,10 @@ export default function App() {
     setShowGameOverModal(!showGameOverModal);
   }, [showGameOverModal, newGame]);
 
+  if (loading) {
+    return null;
+  }
+
   return (
       <View style={STYLES.container}>
         <View style={[STYLES.north, showingModal ? STYLES.withOpacity : undefined]}>
@@ -103,12 +170,12 @@ export default function App() {
           <View style={STYLES.row}>
             <Text style={STYLES.optionsDisplay}>
               <TouchableOpacity style={STYLES.infoIcon} onPress={toggleInfoModal}>
-                <NonClickIcon type="MaterialCommunityIcons" name="information-outline" color={'#fff'} size={30} />
+                <NonClickIcon type="MaterialCommunityIcons" name="information-outline" color={'#fff'} size={25} />
               </TouchableOpacity>
               <TouchableOpacity onPress={toggleOptionsModal}>
                 <View style={STYLES.row}>
-                  <NonClickIcon style={STYLES.gameIcon} type={gameInfo.icon.type} name={gameInfo.icon.name} color={'#fff'} size={30} />
-                  <LevelIcons icons={DIFFICULTY_LEVEL[settings.level].icons} color={'#fff'} size={30} />
+                  <NonClickIcon style={STYLES.gameIcon} type={gameInfo.icon.type} name={gameInfo.icon.name} color={'#fff'} size={25} />
+                  <LevelIcons icons={DIFFICULTY_LEVEL[settings.level].icons} color={'#fff'} size={25} />
                 </View>
               </TouchableOpacity>
             </Text>
@@ -156,23 +223,4 @@ export default function App() {
         )}
       </View>
   );
-}
-
-const getRandomInt = (max: number): number => {
-  return Math.floor(Math.random() * max);
-}
-
-const getRandomColors = (colors: string[], n: number): GameColors => {
-  const icons = [...colors].sort(() => 0.5 - Math.random()).slice(0, n);
-  let containers = [...icons].sort(() => 0.5 - Math.random());
-  let matches = colorMatches(icons, containers);
-  while (matches !== 1) {
-    containers = [...icons].sort(() => 0.5 - Math.random());
-    matches = colorMatches(icons, containers);
-  }
-  return { icons, containers };
-}
-
-const colorMatches = (first: string[], second: string[]): number => {
-  return first.filter((x, i) => x === second[i]).length;
 }

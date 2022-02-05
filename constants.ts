@@ -111,3 +111,5 @@ export const ICON_GROUP = {
 };
 
 export const TIMEOUT = 1500;
+export const GAME_KEY = 'gameType';
+export const DIFFICULTY_KEY = 'difficultyLevel';
