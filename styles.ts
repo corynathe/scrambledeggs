@@ -102,6 +102,7 @@ export const STYLES = StyleSheet.create({
         marginTop: 25,
     },
     modalView: {
+        minWidth: 400,
         margin: 20,
         backgroundColor: '#fff',
         borderRadius: 20,
