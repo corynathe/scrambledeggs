@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/scrambledeggs/static/js/app.86e47111.chunk.js",
-    "app.js.map": "/scrambledeggs/static/js/app.86e47111.chunk.js.map",
+    "app.js": "/scrambledeggs/static/js/app.3fa5b1b5.chunk.js",
+    "app.js.map": "/scrambledeggs/static/js/app.3fa5b1b5.chunk.js.map",
     "runtime~app.js": "/scrambledeggs/static/js/runtime~app.3726a7e7.js",
     "runtime~app.js.map": "/scrambledeggs/static/js/runtime~app.3726a7e7.js.map",
     "static/js/2.4ed36707.chunk.js": "/scrambledeggs/static/js/2.4ed36707.chunk.js",
@@ -29,6 +29,6 @@
   "entrypoints": [
     "static/js/runtime~app.3726a7e7.js",
     "static/js/2.4ed36707.chunk.js",
-    "static/js/app.86e47111.chunk.js"
+    "static/js/app.3fa5b1b5.chunk.js"
   ]
 }
