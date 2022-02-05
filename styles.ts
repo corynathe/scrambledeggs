@@ -26,7 +26,6 @@ export const STYLES = StyleSheet.create({
         fontFamily: 'Papyrus',
         color: '#fff',
         paddingTop: 40,
-        textTransform: 'uppercase'
     },
     infoIcon: {
         paddingRight: 100,
